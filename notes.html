@@ -26,7 +26,7 @@
         
         <div class="header-menu-div">
         
-            <button class="menu-button">
+            <button class="menu-button" onclick="document.location='index.html'">
                 <i class="fa-solid fa-bars"></i>
             </button>
         
@@ -45,13 +45,32 @@
         
         </div>
         
-        <div class="header-share-div">
+       <div class="header-share-div">
         
-            <button class="share-button">
+            <button id="sharebtn" class="share-button">
                 <i class="fa-solid fa-arrow-up-from-bracket"></i>
             </button>
         
         </div>
+
+        <script>
+            const sharebtn = document.querySelector("#sharebtn");
+            sharebtn.addEventListener("click", (event)=>{
+                if(navigator.share){
+                    navigator.share({
+                        title:"Notes | The Art of Living",
+                        url:"https://artoflivingbook.github.io/read/notes.html",
+                    }).then(()=>{
+                        console.log("thanks for sharing");
+                    }).catch((err)=>{
+                        console.log("error using web share API :");
+                        console.log(err);
+                    })
+                }else{
+                    alert("browser does not support this web share API")
+                }
+            })
+        </script>
         
         <div class="hr2">
             <hr>
